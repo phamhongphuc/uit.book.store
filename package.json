@@ -54,6 +54,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "url-loader": "^1.0.1",
+    "vue-import-loader": "phamhongphuc/vue-import-loader",
     "vue-loader": "^15.0.11",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.8.3"

@@ -568,6 +568,10 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
+"@types/node@*":
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.2.tgz#1b928a0baa408fc8ae3ac012cc81375addc147c6"
+
 "@types/node@^8.0.24":
   version "8.10.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.1.tgz#aac98b810c50568054486f2bb8c486d824713be8"
@@ -2138,6 +2142,17 @@ chardet@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
 
+cheerio@^1.0.0-rc.2:
+  version "1.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/cheerio/-/cheerio-1.0.0-rc.2.tgz#4b9f53a81b27e4d5dac31c0ffd0cfa03cc6830db"
+  dependencies:
+    css-select "~1.2.0"
+    dom-serializer "~0.1.0"
+    entities "~1.1.1"
+    htmlparser2 "^3.9.1"
+    lodash "^4.15.0"
+    parse5 "^3.0.1"
+
 chokidar@^2.0.0, chokidar@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.3.tgz#dcbd4f6cbb2a55b4799ba8a840ac527e5f4b1176"
@@ -2657,7 +2672,7 @@ css-select-base-adapter@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.0.tgz#0102b3d14630df86c3eb9fa9f5456270106cf990"
 
-css-select@^1.1.0:
+css-select@^1.1.0, css-select@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-1.2.0.tgz#2b3a110539c5355f1cd8d314623e870b121ec858"
   dependencies:
@@ -3015,7 +3030,7 @@ dom-converter@~0.1:
   dependencies:
     utila "~0.3"
 
-dom-serializer@0:
+dom-serializer@0, dom-serializer@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
   dependencies:
@@ -4545,7 +4560,7 @@ htmlnano@^0.1.6:
     svgo "^1.0.5"
     uglify-js "^3.3.14"
 
-htmlparser2@^3.9.2:
+htmlparser2@^3.9.1, htmlparser2@^3.9.2:
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
   dependencies:
@@ -5505,7 +5520,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.0, lodash@^4.17.10, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.15.0, lodash@^4.17.10, lodash@~4.17.4:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -6408,6 +6423,12 @@ parse-json@^4.0.0:
 parse-passwd@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
+
+parse5@^3.0.1:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-3.0.3.tgz#042f792ffdd36851551cf4e9e066b3874ab45b5c"
+  dependencies:
+    "@types/node" "*"
 
 parseurl@~1.3.2:
   version "1.3.2"
@@ -8824,6 +8845,12 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
+vue-import-loader@phamhongphuc/vue-import-loader:
+  version "0.1.7"
+  resolved "https://codeload.github.com/phamhongphuc/vue-import-loader/tar.gz/b2b7f5c92788e5004bcc8526a67ef17984176105"
+  dependencies:
+    cheerio "^1.0.0-rc.2"
+
 vue-loader@^15.0.11:
   version "15.0.11"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.0.11.tgz#b41dee864cdeb0012c8a2c02a66b13459e45e16e"
@@ -8992,7 +9019,7 @@ webpack-merge@^4.1.2:
   dependencies:
     lodash "^4.17.5"
 
-webpack-sources@1.1.1, webpack-sources@^1.0.1, webpack-sources@^1.1.0:
+webpack-sources@1.1.0, webpack-sources@^1.0.1, webpack-sources@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.1.0.tgz#a101ebae59d6507354d71d8013950a3a8b7a5a54"
   dependencies:
