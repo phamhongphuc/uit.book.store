@@ -1,15 +1,17 @@
 <template>
     <div id="app" 
          class="col">
-         <ai-main/>
+        <main-/>
     </div>
 </template>
 <script>
-import x from './x.vue';
+import main from './main.vue';
+
 export default {
     name: 'app',
     components: {
         ...'./main.vue',
+        // 'main-': main
     },
     mounted() {},
     methods: {},
