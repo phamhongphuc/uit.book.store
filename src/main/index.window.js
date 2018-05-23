@@ -1,6 +1,4 @@
-import {
-    BrowserWindow
-} from 'electron';
+import { BrowserWindow } from 'electron';
 
 const staticUrl = `file://${__dirname}/index.html`;
 const serverUrl = `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`;
@@ -11,19 +9,13 @@ let window = null;
 export default function createWindow() {
     if (window != null) return;
     window = new BrowserWindow({
-        'webPreferences': {
-            // experimentalFeatures: true,
-            // webSecurity: false
-        },
-        'width': 1100,
-        'height': 700,
+        width: 1100,
+        height: 700,
         'min-height': 300,
-        'min-width': 300
+        'min-width': 300,
     });
-
     window.loadURL(isDevelopment ? staticUrl : serverUrl);
-    window.on('closed', () => window = null);
-
+    window.on('closed', () => (window = null));
 
     //  Install `vue-devtools`
     if (process.env.NODE_ENV === 'development') {
