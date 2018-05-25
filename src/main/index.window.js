@@ -1,4 +1,5 @@
 import { BrowserWindow } from 'electron';
+import facebookLogin from './facebookLogin';
 
 const staticUrl = `file://${__dirname}/index.html`;
 const serverUrl = `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`;
@@ -16,6 +17,7 @@ export default function createWindow() {
     });
     window.loadURL(isDevelopment ? staticUrl : serverUrl);
     window.on('closed', () => (window = null));
+    facebookLogin(window);
 
     //  Install `vue-devtools`
     if (process.env.NODE_ENV === 'development') {
@@ -29,6 +31,6 @@ export default function createWindow() {
             .catch(err => console.log('Unable to install `vue-devtools`: \n', err));
         require('devtron').install();
     }
-
+    
     return window;
 }

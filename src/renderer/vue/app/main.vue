@@ -1,10 +1,19 @@
 <template>
     <div>
-        main
+        <button @click="fbLogin">
+            Login with Facebook
+        </button>
     </div>
 </template>
 <script>
+import { ipcRenderer } from 'electron';
+
 export default {
-    // name: 'main',
+    methods: {
+        fbLogin() {
+            const abc = ipcRenderer.sendSync('facebook login');
+            console.log(abc);
+        },
+    },
 };
 </script>
