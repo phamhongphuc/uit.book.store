@@ -5,13 +5,10 @@
     </div>
 </template>
 <script>
-import main from './main.vue';
-
 export default {
     name: 'app',
     components: {
-        ...'./main.vue',
-        // 'main-': main
+        ...'@/app/main.vue',
     },
     mounted() {},
     methods: {},
