@@ -43,7 +43,7 @@
                 "MemberExpression": 1
             }
         ],
-        "linebreak-style": ["warn", "windows"],
+        "linebreak-style": ["error", "windows"],
         "quotes": [
             "warn",
             "single",

@@ -5,8 +5,6 @@ node_js:
 before_install:
 - yarn install
 - yarn run clean:travis
-- yarn compile
-- yarn dist
 
 stages:
   - Unit test
@@ -16,13 +14,15 @@ jobs:
   include:
     # Unit Test
     - stage:          Unit test
-      script:         yarn test
+      script:         
+        - yarn test
+        - yarn dist:dir
 
     # Release
     - stage:          Release
       if:             (branch IN (master, release)) AND (tag ~= ^v)
       script:
-        - yarn test
+        - yarn compile
 
       deploy:
         provider: releases
