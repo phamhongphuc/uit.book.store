@@ -1,15 +1,14 @@
 <template>
     <div id="app" 
          class="col">
-         <ai-main/>
+        <main-/>
     </div>
 </template>
 <script>
-import x from './x.vue';
 export default {
     name: 'app',
     components: {
-        ...'./main.vue',
+        ...'@/app/main.vue',
     },
     mounted() {},
     methods: {},

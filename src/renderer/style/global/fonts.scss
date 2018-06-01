@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Pacifico|Roboto:100,200,300');
+
+@font-face {
+    font-family: 'ai-web-font';
+    src: url('./fonts/aicon.eot');
+    src: url('./fonts/aicon.eot#iefix') format('embedded-opentype'),
+        url('./fonts/aicon.ttf') format('truetype'),
+        url('./fonts/aicon.woff') format('woff'),
+        url('./fonts/aicon.svg#ai-web-font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'weather';
+    src: url('./fonts/weather.eot');
+    src: url('./fonts/weather.eot#iefix') format('embedded-opentype'),
+        url('./fonts/weather.ttf') format('truetype'),
+        url('./fonts/weather.woff') format('woff'),
+        url('./fonts/weather.svg#ai-web-font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon {
+    font-family: 'ai-web-font';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon.weather {
+    font-family: 'weather';
+}
