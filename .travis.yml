@@ -32,7 +32,7 @@ jobs:
         on:
           tags: true
           repo: phamhongphuc/uit.book.store
-          branch: dev
+          branch: master
           
 after_success: ./.travis/discord.sh success $WEBHOOK_URL
 after_failure: ./.travis/discord.sh failure $WEBHOOK_URL

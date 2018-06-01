@@ -31,6 +31,6 @@ export default function createWindow() {
             .catch(err => console.log('Unable to install `vue-devtools`: \n', err));
         require('devtron').install();
     }
-    
+
     return window;
 }
