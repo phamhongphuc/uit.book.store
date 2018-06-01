@@ -6,11 +6,10 @@
   "author": "phamhongphuc + thaotram",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "clean:travis": "rm -rf dist",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "release": "yarn compile && electron-builder",
+    "release:dir": "yarn release --dir -c.compression=store -c.mac.identity=null",
     "test": "exit 0"
   },
   "electronWebpack": {
@@ -30,7 +29,11 @@
     },
     "nsis": {
       "installerIcon": "static/icon.ico",
-      "createDesktopShortcut": "always"
+      "createDesktopShortcut": "always",
+      "artifactName": "BookStore.Setup.${ext}"
+    },
+    "linux":{
+      "artifactName": "BookStore.Setup.${ext}"
     }
   },
   "dependencies": {
