@@ -28,7 +28,7 @@ jobs:
         provider: releases
         api_key:
           secure: J1CzYw//r0kzGKC9AJQc1BEPnInk5Fd3KPBpvl0Byb9L+axfuSg8PtV2/vVrMIQUWGrNgaePWV1uUAHq1AfDTmc83iAUMpcWE5JleNLMcApRS1jqfgs5IC6Fc5V7D6v9C2ku6NRT7mal89rAWnfVK7kddyfpOe8MXYQiN0mgS2aD93HftAcjZPIIaLnjNMKFasNqRf8RQC45/ueA5ku5YdZDtbevHz+tq/QcQTo+jw0/NhDagWa/HRZjUZWVgI4rCO7lUNKfmQjq2dYPk1k9AFQpNpWi6lHVQm6r4Z04KjH274cjCWyna8LTbUM3NLVXl2VCcKXxGVn3jxUIphXzpXXjmtlP96vWLI40w7PmVyK8m6pMHo060SfDigiX9MREBpq0tvwjgm5ALiZ1tsdyZivPMZaJN/FAwWpKd0vXmc9R0jYWPedNT1HnyNB3qTugKEVvIypdINtlvjTgnrNiPELlEUdtxOAImvVksEKDUy6OPJto8mw36RQ9mWdcSkaOnymd/LSH/DUM02D+tYHhdgN2+K+MRLpwxtcgI2YUJCY20d8nTl2TT/BgnTbfTj1/CC3BjfAhb74LYAxh7oXLBNrq3uxWuwDTsgjJC1JgAkclg7ureWXYQcJRwjlNtRc789OMk+HBg5EiHNh1wHcoHfz86JqL6ED3Det/Ral++dA=
-        file: dist/uit.book.store Setup 0.1.0.exe
+        file: dist/BookStore.Setup.exe
         on:
           tags: true
           repo: phamhongphuc/uit.book.store

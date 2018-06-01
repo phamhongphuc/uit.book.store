@@ -30,7 +30,8 @@
     },
     "nsis": {
       "installerIcon": "static/icon.ico",
-      "createDesktopShortcut": "always"
+      "createDesktopShortcut": "always",
+      "artifactName": "BookStore.Setup.${ext}"
     }
   },
   "dependencies": {
