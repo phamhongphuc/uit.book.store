@@ -1,12 +1,17 @@
 {
   "name": "uit.book.store",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
+  "description": "A book store management system",
+  "author": "phamhongphuc + thaotram",
   "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "clean:travis": "rm -rf dist",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "test": "exit 0"
   },
   "electronWebpack": {
     "main": {
@@ -20,7 +25,12 @@
   "build": {
     "appId": "uit.book.store",
     "win": {
-      "icon": "icon.ico"
+      "icon": "static/icon.ico",
+      "target": "NSIS"
+    },
+    "nsis": {
+      "installerIcon": "static/icon.ico",
+      "createDesktopShortcut": "always"
     }
   },
   "dependencies": {
