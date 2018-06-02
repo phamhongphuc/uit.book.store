@@ -21,6 +21,14 @@ jobs:
     # Unit Test
     - stage:          Parallel Jobs
       env:            ❤ = Test
+      before_install:
+        - nvm install 8
+        - node --version
+        - npm --version
+        - nvm --version
+        - yarn --version
+      install:
+        - yarn --link-duplicates --pure-lockfile
       script:         
         - yarn compile
         - yarn test
@@ -39,11 +47,11 @@ jobs:
               -v ~/.cache/electron:/root/.cache/electron \
               -v ~/.cache/electron-builder:/root/.cache/electron-builder \
               electronuserland/builder:wine \
-              /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --win"
+              /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --win && ls dist\"
           else
             yarn release
           fi
-
+        - ls dist\
       deploy:
         provider: releases
         api_key:
@@ -59,14 +67,17 @@ jobs:
     # Release Linux
     - stage:          Parallel Jobs
       env:            ❤ = Release Linux
-      install:
+      before_install:
         - nvm install 8
         - node --version
         - npm --version
         - nvm --version
         - yarn --version
+      install:
+        - yarn --link-duplicates --pure-lockfile
       script:
-        - yarn --link-duplicates --pure-lockfile && yarn release --linux
+        - yarn release --linux
+        - ls dist\
       deploy:
         provider: releases
         api_key:
