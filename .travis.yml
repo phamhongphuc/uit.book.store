@@ -30,7 +30,6 @@ jobs:
       install:
         - yarn --link-duplicates --pure-lockfile
       script:         
-        - yarn compile
         - yarn test
         - yarn release:dir
 
