@@ -1,38 +1,94 @@
-language: node_js
-node_js:
-- '8'
+os: linux
+language: generic
 
-before_install:
-- yarn install
-- yarn run clean:travis
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine-mono
+
+before_script:
+  - git lfs pull
 
 stages:
-  - Unit test
-  - Release
+  - Parallel Jobs
 
 jobs:
   include:
-    # Unit Test
-    - stage:          Unit test
-      script:         
-        - yarn test
-        - yarn dist:dir
+    # # Unit Test
+    # - stage:          Parallel Jobs
+    #   env:            ❤ = Test
+    #   before_install:
+    #     - nvm install 8
+    #     - node --version
+    #     - npm --version
+    #     - nvm --version
+    #     - yarn --version
+    #   install:
+    #     - yarn --link-duplicates --pure-lockfile
+    #   script:         
+    #     - yarn test
+    #     - yarn release:dir
 
-    # Release
-    - stage:          Release
+    # Release Window
+    - stage:          Parallel Jobs
       if:             (branch IN (master, release)) AND (tag ~= ^v)
+      env:            ❤ = Release Windows with Docker in Linux 
       script:
-        - yarn compile
-
+        - |
+          if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+            docker run --rm \
+              --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+              -v ${PWD}:/project \
+              -v ~/.cache/electron:/root/.cache/electron \
+              -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+              electronuserland/builder:wine \
+              /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --win && ls dist/"
+          else
+            yarn release
+          fi
+        - echo "----- List file -----"
+        - ls
       deploy:
         provider: releases
         api_key:
-          secure: J1CzYw//r0kzGKC9AJQc1BEPnInk5Fd3KPBpvl0Byb9L+axfuSg8PtV2/vVrMIQUWGrNgaePWV1uUAHq1AfDTmc83iAUMpcWE5JleNLMcApRS1jqfgs5IC6Fc5V7D6v9C2ku6NRT7mal89rAWnfVK7kddyfpOe8MXYQiN0mgS2aD93HftAcjZPIIaLnjNMKFasNqRf8RQC45/ueA5ku5YdZDtbevHz+tq/QcQTo+jw0/NhDagWa/HRZjUZWVgI4rCO7lUNKfmQjq2dYPk1k9AFQpNpWi6lHVQm6r4Z04KjH274cjCWyna8LTbUM3NLVXl2VCcKXxGVn3jxUIphXzpXXjmtlP96vWLI40w7PmVyK8m6pMHo060SfDigiX9MREBpq0tvwjgm5ALiZ1tsdyZivPMZaJN/FAwWpKd0vXmc9R0jYWPedNT1HnyNB3qTugKEVvIypdINtlvjTgnrNiPELlEUdtxOAImvVksEKDUy6OPJto8mw36RQ9mWdcSkaOnymd/LSH/DUM02D+tYHhdgN2+K+MRLpwxtcgI2YUJCY20d8nTl2TT/BgnTbfTj1/CC3BjfAhb74LYAxh7oXLBNrq3uxWuwDTsgjJC1JgAkclg7ureWXYQcJRwjlNtRc789OMk+HBg5EiHNh1wHcoHfz86JqL6ED3Det/Ral++dA=
+          secure: qr+VQ8BdHRMAincJ/FyURhEJYZpA2UdaeCkim5OUFRn6KazIsFpy40Yzn1jyUntMg8Mhk3O5PK+XEnqyoeiHcAm0ZmVy5U17a4gJp7jckOowWwt86OJP93r3rY6wRdvDlPu4YaYmkbw9obFAKPBn7TN/LWdC2POPK+MQc77Fcs7EP7yM4TWmiwlHLG6FJoR9uqlg1cQf7cF8vjn7ztB2raaHINMzlSk42HcW/EdJuRyTkxyH+HCvmktkw/tHDUHVKm+Bg5T1EdgKIto786aiVVJXp4IQPzQ7TB3E+BHTr29QJm8bVzocTr4o54Aeu9b9AVZf0JH+XwK1P2JUz+WWKptxypXOYGpGsYqsEv3VikKn/drQAmugyxBaYxxVXSLBJGoDQCqpT4+Gt1eUqsWzqZHLEfKF/6oxe6p9j5IztiCHyyh5YqY7mV2YfLfqKC33wa3eluW2gCk3BNVt+71MBDyJIf29FZLYEmMlojBpXo/6oV8b2FcCMldT0ZX3Iu1wVvgcjWEbzF5UTdeBnTiiD386HC4rk5dsNqJ1AMj0lrwmhFOGc2OLjeWOadw805rKzlUxTXsJ06C69aUH1aQx1q4LXVVxUvy9a9Wyj5rnQHsD/5BwHK++3rh9FiDmWafPmtcUA+Rrpsw39BFDk/lB0tZr0pMQN7RGCFBeODUq6bk=
         file: dist/BookStore.Setup.exe
+        skip_cleanup: true
         on:
           tags: true
           repo: phamhongphuc/uit.book.store
-          branch: master
-          
+
+    # # Release Linux
+    # - stage:          Parallel Jobs
+    #   if:             (branch IN (master, release)) AND (tag ~= ^v)
+    #   env:            ❤ = Release Linux
+    #   before_install:
+    #     - nvm install 8
+    #     - node --version
+    #     - npm --version
+    #     - nvm --version
+    #     - yarn --version
+    #   install:
+    #     - yarn --link-duplicates --pure-lockfile
+    #   script:
+    #     - yarn release --linux
+    #     - ls dist\
+    #   deploy:
+    #     provider: releases
+    #     api_key:
+    #       secure: $API_KEY
+    #     file: 
+    #       - dist/BookStore.Setup.appimage
+    #       - dist/BookStore.Setup.snap
+    #     skip_cleanup: true
+    #     on:
+    #       tags: true
+    #       repo: phamhongphuc/uit.book.store
+    #       branch: master
+
 after_success: ./.travis/discord.sh success $WEBHOOK_URL
 after_failure: ./.travis/discord.sh failure $WEBHOOK_URL
