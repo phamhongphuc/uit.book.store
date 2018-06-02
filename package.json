@@ -33,7 +33,8 @@
       "artifactName": "BookStore.Setup.${ext}"
     },
     "linux": {
-      "artifactName": "BookStore.Setup.${ext}"
+      "artifactName": "BookStore.Setup.${ext}", 
+      "category":"Utility" 
     }
   },
   "dependencies": {
