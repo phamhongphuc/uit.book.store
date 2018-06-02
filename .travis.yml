@@ -1,14 +1,17 @@
 os: linux
-language: node_js
-node_js:
-- '8'
+language: generic
 
 cache:
   directories:
   - node_modules
-
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  
 before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
+  - rm -rf $HOME/.cache/electron-builder/wine-mono
+
+before_script:
+  - git lfs pull
 
 stages:
   - Parallel Jobs
@@ -23,18 +26,51 @@ jobs:
         - yarn test
         - yarn release:dir
 
-    # Release
+    # Release Window
     - stage:          Parallel Jobs
-      env:            ❤ = Release
+      env:            ❤ = Release Windows with Docker in Linux 
       # if:             (branch IN (master, release)) AND (tag ~= ^v)
       script:
-        - yarn release
-        - ls dist/
+        - |
+          if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+            docker run --rm \
+              --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+              -v ${PWD}:/project \
+              -v ~/.cache/electron:/root/.cache/electron \
+              -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+              electronuserland/builder:wine \
+              /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --win"
+          else
+            yarn release
+          fi
 
       deploy:
         provider: releases
         api_key:
-          secure: J1CzYw//r0kzGKC9AJQc1BEPnInk5Fd3KPBpvl0Byb9L+axfuSg8PtV2/vVrMIQUWGrNgaePWV1uUAHq1AfDTmc83iAUMpcWE5JleNLMcApRS1jqfgs5IC6Fc5V7D6v9C2ku6NRT7mal89rAWnfVK7kddyfpOe8MXYQiN0mgS2aD93HftAcjZPIIaLnjNMKFasNqRf8RQC45/ueA5ku5YdZDtbevHz+tq/QcQTo+jw0/NhDagWa/HRZjUZWVgI4rCO7lUNKfmQjq2dYPk1k9AFQpNpWi6lHVQm6r4Z04KjH274cjCWyna8LTbUM3NLVXl2VCcKXxGVn3jxUIphXzpXXjmtlP96vWLI40w7PmVyK8m6pMHo060SfDigiX9MREBpq0tvwjgm5ALiZ1tsdyZivPMZaJN/FAwWpKd0vXmc9R0jYWPedNT1HnyNB3qTugKEVvIypdINtlvjTgnrNiPELlEUdtxOAImvVksEKDUy6OPJto8mw36RQ9mWdcSkaOnymd/LSH/DUM02D+tYHhdgN2+K+MRLpwxtcgI2YUJCY20d8nTl2TT/BgnTbfTj1/CC3BjfAhb74LYAxh7oXLBNrq3uxWuwDTsgjJC1JgAkclg7ureWXYQcJRwjlNtRc789OMk+HBg5EiHNh1wHcoHfz86JqL6ED3Det/Ral++dA=
+          secure: $API_KEY
+        file: 
+          - dist/BookStore.Setup.exe
+        skip_cleanup: true
+        on:
+          tags: true
+          repo: phamhongphuc/uit.book.store
+          branch: master
+
+    # Release Linux
+    - stage:          Parallel Jobs
+      env:            ❤ = Release Linux
+      install:
+        - nvm install 8
+        - node --version
+        - npm --version
+        - nvm --version
+        - yarn --version
+      script:
+        - yarn --link-duplicates --pure-lockfile && yarn release --linux
+      deploy:
+        provider: releases
+        api_key:
+          secure: $API_KEY
         file: 
           - dist/BookStore.Setup.appimage
           - dist/BookStore.Setup.snap
@@ -43,6 +79,6 @@ jobs:
           tags: true
           repo: phamhongphuc/uit.book.store
           branch: master
-          
+
 after_success: ./.travis/discord.sh success $WEBHOOK_URL
 after_failure: ./.travis/discord.sh failure $WEBHOOK_URL

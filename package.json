@@ -32,7 +32,7 @@
       "createDesktopShortcut": "always",
       "artifactName": "BookStore.Setup.${ext}"
     },
-    "linux":{
+    "linux": {
       "artifactName": "BookStore.Setup.${ext}"
     }
   },
