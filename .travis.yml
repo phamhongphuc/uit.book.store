@@ -56,13 +56,13 @@ jobs:
         provider: releases
         api_key:
           secure: $API_KEY
-        file: 
-          - dist/BookStore.Setup.exe
+        file: dist/BookStore.Setup.exe
         skip_cleanup: true
         on:
           tags: true
           repo: phamhongphuc/uit.book.store
-          branch: master
+
+
 
     # # Release Linux
     # - stage:          Parallel Jobs
