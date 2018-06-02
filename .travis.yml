@@ -18,20 +18,20 @@ stages:
 
 jobs:
   include:
-    # Unit Test
-    - stage:          Parallel Jobs
-      env:            ❤ = Test
-      before_install:
-        - nvm install 8
-        - node --version
-        - npm --version
-        - nvm --version
-        - yarn --version
-      install:
-        - yarn --link-duplicates --pure-lockfile
-      script:         
-        - yarn test
-        - yarn release:dir
+    # # Unit Test
+    # - stage:          Parallel Jobs
+    #   env:            ❤ = Test
+    #   before_install:
+    #     - nvm install 8
+    #     - node --version
+    #     - npm --version
+    #     - nvm --version
+    #     - yarn --version
+    #   install:
+    #     - yarn --link-duplicates --pure-lockfile
+    #   script:         
+    #     - yarn test
+    #     - yarn release:dir
 
     # Release Window
     - stage:          Parallel Jobs
@@ -50,6 +50,8 @@ jobs:
           else
             yarn release
           fi
+        - echo "----- List file -----"
+        - ls
       deploy:
         provider: releases
         api_key:
@@ -62,33 +64,33 @@ jobs:
           repo: phamhongphuc/uit.book.store
           branch: master
 
-    # Release Linux
-    - stage:          Parallel Jobs
-      if:             (branch IN (master, release)) AND (tag ~= ^v)
-      env:            ❤ = Release Linux
-      before_install:
-        - nvm install 8
-        - node --version
-        - npm --version
-        - nvm --version
-        - yarn --version
-      install:
-        - yarn --link-duplicates --pure-lockfile
-      script:
-        - yarn release --linux
-        - ls dist\
-      deploy:
-        provider: releases
-        api_key:
-          secure: $API_KEY
-        file: 
-          - dist/BookStore.Setup.appimage
-          - dist/BookStore.Setup.snap
-        skip_cleanup: true
-        on:
-          tags: true
-          repo: phamhongphuc/uit.book.store
-          branch: master
+    # # Release Linux
+    # - stage:          Parallel Jobs
+    #   if:             (branch IN (master, release)) AND (tag ~= ^v)
+    #   env:            ❤ = Release Linux
+    #   before_install:
+    #     - nvm install 8
+    #     - node --version
+    #     - npm --version
+    #     - nvm --version
+    #     - yarn --version
+    #   install:
+    #     - yarn --link-duplicates --pure-lockfile
+    #   script:
+    #     - yarn release --linux
+    #     - ls dist\
+    #   deploy:
+    #     provider: releases
+    #     api_key:
+    #       secure: $API_KEY
+    #     file: 
+    #       - dist/BookStore.Setup.appimage
+    #       - dist/BookStore.Setup.snap
+    #     skip_cleanup: true
+    #     on:
+    #       tags: true
+    #       repo: phamhongphuc/uit.book.store
+    #       branch: master
 
 after_success: ./.travis/discord.sh success $WEBHOOK_URL
 after_failure: ./.travis/discord.sh failure $WEBHOOK_URL
