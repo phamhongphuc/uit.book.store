@@ -55,14 +55,12 @@ jobs:
       deploy:
         provider: releases
         api_key:
-          secure: $API_KEY
+          secure: qr+VQ8BdHRMAincJ/FyURhEJYZpA2UdaeCkim5OUFRn6KazIsFpy40Yzn1jyUntMg8Mhk3O5PK+XEnqyoeiHcAm0ZmVy5U17a4gJp7jckOowWwt86OJP93r3rY6wRdvDlPu4YaYmkbw9obFAKPBn7TN/LWdC2POPK+MQc77Fcs7EP7yM4TWmiwlHLG6FJoR9uqlg1cQf7cF8vjn7ztB2raaHINMzlSk42HcW/EdJuRyTkxyH+HCvmktkw/tHDUHVKm+Bg5T1EdgKIto786aiVVJXp4IQPzQ7TB3E+BHTr29QJm8bVzocTr4o54Aeu9b9AVZf0JH+XwK1P2JUz+WWKptxypXOYGpGsYqsEv3VikKn/drQAmugyxBaYxxVXSLBJGoDQCqpT4+Gt1eUqsWzqZHLEfKF/6oxe6p9j5IztiCHyyh5YqY7mV2YfLfqKC33wa3eluW2gCk3BNVt+71MBDyJIf29FZLYEmMlojBpXo/6oV8b2FcCMldT0ZX3Iu1wVvgcjWEbzF5UTdeBnTiiD386HC4rk5dsNqJ1AMj0lrwmhFOGc2OLjeWOadw805rKzlUxTXsJ06C69aUH1aQx1q4LXVVxUvy9a9Wyj5rnQHsD/5BwHK++3rh9FiDmWafPmtcUA+Rrpsw39BFDk/lB0tZr0pMQN7RGCFBeODUq6bk=
         file: dist/BookStore.Setup.exe
         skip_cleanup: true
         on:
           tags: true
           repo: phamhongphuc/uit.book.store
-
-
 
     # # Release Linux
     # - stage:          Parallel Jobs
