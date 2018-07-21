@@ -1,5 +1,5 @@
 {
-  "name": "uit.book.store",
+  "name": "electron.webpack.vue",
   "version": "0.1.1",
   "license": "MIT",
   "description": "A book store management system",
@@ -30,11 +30,11 @@
     "nsis": {
       "installerIcon": "static/icon.ico",
       "createDesktopShortcut": "always",
-      "artifactName": "BookStore.Setup.${ext}"
+      "artifactName": "App.Setup.${ext}"
     },
     "linux": {
-      "artifactName": "BookStore.Setup.${ext}", 
-      "category":"Utility" 
+      "artifactName": "App.Setup.${ext}",
+      "category": "Utility"
     }
   },
   "dependencies": {

@@ -55,7 +55,7 @@
         "semi": ["error", "always"],
         "no-debugger": "off",
         "no-console": "off",
-        "no-unused-vars": "off",
+        "no-unused-vars": "warn",
         "space-before-function-paren": ["error", "never"],
         "operator-linebreak": ["error", "before"],
         "eol-last": ["error", "always"],
