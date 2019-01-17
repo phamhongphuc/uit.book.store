@@ -8480,7 +8480,7 @@ unzip-response@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
 
-upath@^1.0.0, upath@^1.1.0:
+upath@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.0.tgz#35256597e46a581db4793d0ce47fa9aebfc9fabd"
 
@@ -8676,11 +8676,13 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
-vue-import-loader@phamhongphuc/vue-import-loader#v0.1.8:
-  version "0.1.8"
-  resolved "https://codeload.github.com/phamhongphuc/vue-import-loader/tar.gz/056899567cb2e5f4a436931f639381690f39d2e7"
+vue-import-loader@phamhongphuc/vue-import-loader#v0.2.0:
+  version "0.2.0"
+  uid fc730430186ca4a2670bc6c84555281256f44163
+  resolved "https://codeload.github.com/phamhongphuc/vue-import-loader/tar.gz/fc730430186ca4a2670bc6c84555281256f44163"
   dependencies:
     cheerio "^1.0.0-rc.2"
+    loader-utils "^1.1.0"
 
 vue-loader@^15.2.2:
   version "15.2.4"
